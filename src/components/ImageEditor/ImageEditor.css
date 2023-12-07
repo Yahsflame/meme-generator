@@ -59,7 +59,7 @@ input:not(#textColor) {
   cursor: pointer;
 }
 
-// Overrides for cropper
+// Overrides for cropper, may not be necessary with removing default styles
 .reactEasyCrop_CropArea {
   color: rgba(0, 0, 0, 0.2) !important;
 }
