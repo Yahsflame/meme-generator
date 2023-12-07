@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 
 interface TextEditorProps {
   onTextChange: (text: string) => void;
@@ -15,7 +15,7 @@ const TextEditor = ({ onTextChange, text, placeholderText } : TextEditorProps) =
     }
   }, [text]);
 
-  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLocalText(e.target.value);
     onTextChange(e.target.value);
   };
