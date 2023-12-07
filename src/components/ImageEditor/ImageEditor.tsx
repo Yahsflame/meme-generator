@@ -11,13 +11,19 @@ interface ImageEditorProps {
 
 const ImageEditor: React.FC<ImageEditorProps> = ({ onImageChange }) => {
   const [imageUrl, setImageUrl] = useState('');
-  const [crop, setCrop] = useState<Area>({ x: 0, y: 0, width: 1, height: 1 });
-  const [rotation, setRotation] = useState<number>(0);
-  const [zoom, setZoom] = useState<number>(1);
   const [textTop, setTextTop] = useState<string>('');
   const [textBottom, setTextBottom] = useState<string>('');
   const [textColor, setTextColor] = useState<string>('#ffffff');
   const [mirror, setMirror] = useState<boolean>(false);
+  const [rotation, setRotation] = useState<number>(0);
+  const [crop, setCrop] = useState<Area>({ x: 0, y: 0, width: 1, height: 1 });
+  const [zoom, setZoom] = useState<number>(1);
+
+  const handleImageInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newImageUrl = e.target.value;
+    setImageUrl(newImageUrl);
+    onImageChange(newImageUrl);
+  };
 
   const handleMirrorChange = () => {
     setMirror((prevMirror) => !prevMirror);
@@ -29,24 +35,6 @@ const ImageEditor: React.FC<ImageEditorProps> = ({ onImageChange }) => {
 
   const handleTextColorChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTextColor(e.target.value);
-  };
-
-  const onCropChange = (newCrop: Point) => {
-    setCrop((prevCrop) => ({
-      ...prevCrop,
-      x: newCrop.x,
-      y: newCrop.y,
-    }));
-  };
-
-  const onZoomChange = (newZoom: number) => {
-    setZoom(newZoom);
-  };
-
-  const handleImageInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newImageUrl = e.target.value;
-    setImageUrl(newImageUrl);
-    onImageChange(newImageUrl);
   };
 
   const handleRotationChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +57,18 @@ const ImageEditor: React.FC<ImageEditorProps> = ({ onImageChange }) => {
 
   const handleTextBottomChange = (newTextBottom: string) => {
     setTextBottom(newTextBottom);
+  };
+
+  const onCropChange = (newCrop: Point) => {
+    setCrop((prevCrop) => ({
+      ...prevCrop,
+      x: newCrop.x,
+      y: newCrop.y,
+    }));
+  };
+
+  const onZoomChange = (newZoom: number) => {
+    setZoom(newZoom);
   };
 
   return (
@@ -98,41 +98,42 @@ const ImageEditor: React.FC<ImageEditorProps> = ({ onImageChange }) => {
           />
         </div>
 
-      {imageUrl && (
-        <>
-          <div className='css--main-app_inputs_rotation'>
-            <label htmlFor="rotation">Rotation:</label>
-            <input
-              type="text"
-              id="rotation"
-              value={rotation}
-              onChange={handleRotationChange}
-              pattern="[0-9]*"
-            />
-          </div>
+        {/* We want to hide the form for inputs until the image has been loaded in */}
+        {imageUrl && (
+          <>
+            <div className='css--main-app_inputs_rotation'>
+              <label htmlFor="rotation">Rotation:</label>
+              <input
+                type="text"
+                id="rotation"
+                value={rotation}
+                onChange={handleRotationChange}
+                pattern="[0-9]*"
+              />
+            </div>
 
-          <div className='css--main-app_inputs_mirror'>
-            <label>
-              Mirror Image : 
-              <input type="checkbox" onChange={handleMirrorChange} />
-            </label>
-          </div>
+            <div className='css--main-app_inputs_mirror'>
+              <label>
+                Mirror Image : 
+                <input type="checkbox" onChange={handleMirrorChange} />
+              </label>
+            </div>
 
-          <TextEditor onTextChange={handleTextTopChange} text={textTop} placeholderText="Enter Top Text" />
-          <TextEditor onTextChange={handleTextBottomChange} text={textBottom}  placeholderText="Enter Bottom Text" />
+            <TextEditor onTextChange={handleTextTopChange} text={textTop} placeholderText="Enter Top Text" />
+            <TextEditor onTextChange={handleTextBottomChange} text={textBottom}  placeholderText="Enter Bottom Text" />
 
-          <div className='css--main-app_inputs_text-color'>
-            <label htmlFor="textColor">Text Color:</label>
-            <input
-              type="color"
-              id="textColor"
-              value={textColor}
-              onChange={handleTextColorChange}
-            />
-          </div>
-          <OutputArea crop={crop} rotation={rotation} />
-        </>
-      )}
+            <div className='css--main-app_inputs_text-color'>
+              <label htmlFor="textColor">Text Color:</label>
+              <input
+                type="color"
+                id="textColor"
+                value={textColor}
+                onChange={handleTextColorChange}
+              />
+            </div>
+            <OutputArea crop={crop} rotation={rotation} />
+          </>
+        )}
       </div>
     </div>
   );

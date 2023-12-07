@@ -1,12 +1,1 @@
-.css--main-app {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.css--main-app_image-viewer {
-  width: 400px; 
-  height: 400px; 
-  position: relative; 
-  overflow: hidden;
-}
+//Created simply to show structure and in case anything needed to be broken out specifically
