@@ -1,6 +1,7 @@
 // App.tsx
 import React from 'react';
-import ImageEditor from './ImageEditor';
+import ImageEditor from './components/ImageEditor/ImageEditor';
+import './App.css'
 
 const App: React.FC = () => {
   const handleImageChange = (url: string) => {
@@ -8,7 +9,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='App'>
       <h1>Meme Generator</h1>
       <ImageEditor onImageChange={handleImageChange} />
     </div>

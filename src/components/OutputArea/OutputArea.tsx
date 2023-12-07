@@ -12,7 +12,6 @@ const OutputArea: React.FC<OutputAreaProps> = ({ crop, rotation }) => {
       <h3>Live Output:</h3>
       <p>Crop: {JSON.stringify(crop)}</p>
       <p>Rotation: {rotation}</p>
-      {/* Add additional output information as needed */}
     </div>
   );
 };
