@@ -41,7 +41,7 @@
   align-items: center;
 }
 
-// We don\'t want to apply the same styles to #textColor so users can see the color swatch
+/* We dont want to apply the same styles to #textColor so users can see the color swatch */
 input:not(#textColor) {
   padding: 12px 20px;
   margin: 8px 0;
@@ -51,15 +51,15 @@ input:not(#textColor) {
   box-sizing: border-box;
 }
 
-// Had to use an important here to override the margin being applied to other inputs
-// Tried to use the not selector like above, but still bled through
+/* Had to use an important here to override the margin being applied to other inputs */
+/* Tried to use the not selector like above, but still bled through */
 .css--main-app_inputs_mirror label input {
   margin: 0 !important;
   pointer-events: all;
   cursor: pointer;
 }
 
-// Overrides for cropper, may not be necessary with removing default styles
+/* Overrides for cropper, may not be necessary with removing default styles */
 .reactEasyCrop_CropArea {
   color: rgba(0, 0, 0, 0.2) !important;
 }
