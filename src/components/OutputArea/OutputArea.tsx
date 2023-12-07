@@ -6,7 +6,7 @@ interface OutputAreaProps {
   rotation: number;
 }
 
-const OutputArea: React.FC<OutputAreaProps> = ({ crop, rotation }) => {
+const OutputArea = ({ crop, rotation } : OutputAreaProps) => {
   return (
     <div>
       <h3>Live Output:</h3>

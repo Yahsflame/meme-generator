@@ -6,7 +6,7 @@ interface TextEditorProps {
   placeholderText: string
 }
 
-const TextEditor: React.FC<TextEditorProps> = ({ onTextChange, text, placeholderText }) => {
+const TextEditor = ({ onTextChange, text, placeholderText } : TextEditorProps) => {
   const [localText, setLocalText] = useState('');
 
   useEffect(() => {

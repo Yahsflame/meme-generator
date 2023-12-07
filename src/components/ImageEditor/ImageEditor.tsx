@@ -5,11 +5,7 @@ import TextEditor from '../TextEditor/TextEditor';
 import OutputArea from '../OutputArea/OutputArea';
 import './ImageEditor.css';
 
-interface ImageEditorProps {
-  onImageChange: (url: string) => void;
-}
-
-const ImageEditor: React.FC<ImageEditorProps> = ({ onImageChange }) => {
+const ImageEditor = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [textTop, setTextTop] = useState<string>('');
   const [textBottom, setTextBottom] = useState<string>('');
@@ -22,7 +18,6 @@ const ImageEditor: React.FC<ImageEditorProps> = ({ onImageChange }) => {
   const handleImageInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newImageUrl = e.target.value;
     setImageUrl(newImageUrl);
-    onImageChange(newImageUrl);
   };
 
   const handleMirrorChange = () => {
